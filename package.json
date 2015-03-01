@@ -1,0 +1,16 @@
+{
+  "name": "generator-doberman",
+  "version": "0.1.0",
+  "description": "Scaffold a Doberman webapp base",
+  "license": "BSD-3-Clause",
+  "author": "Doberman",
+  "repository": "doberman/generator-doberman",
+  "homepage": "http://github.com/doberman/generator-doberman",
+  "bugs": "http://github.com/doberman/generator-doberman/issues",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.9"
+  }
+}
