@@ -15,7 +15,7 @@ module.exports = generators.Base.extend({
       name: 'features',
       message: 'What do you want to use?',
       choices: [{
-        name: 'scss-doberman-framework',
+        name: 'Doberman SCSS base structure',
         value: 'includeScssFramework',
         checked: true
       }]
@@ -41,6 +41,11 @@ module.exports = generators.Base.extend({
 
   git: function() {
     this.template('gitignore', '.gitignore');
+  },
+
+  jshint: function() {
+    this.template('jshintignore', '.jshintignore');
+    this.template('jshintrc', '.jshintrc');
   },
 
   app: function() {
