@@ -18,9 +18,14 @@ module.exports = generators.Base.extend({
         name: 'Doberman SCSS base structure',
         value: 'includeScssFramework',
         checked: true
+      },{
+        name: 'Use Middleman folder strucure',
+        value: 'useMiddleman',
+        checked: false
       }]
     }, function(answers) {
       this.includeScssFramework = answers.features.indexOf('includeScssFramework') !== -1;
+      this.useMiddleman = answers.features.indexOf('useMiddleman') !== -1;
       done();
     }.bind(this));
   },
@@ -40,7 +45,13 @@ module.exports = generators.Base.extend({
   },
 
   git: function() {
-    this.template('gitignore', '.gitignore');
+    if(this.useMiddleman){
+      var destination = this.readFileAsString('.gitignore');
+      var template = this.readFileAsString(this.templatePath('gitignore'));
+      this.write('.gitignore', destination + "\n\n# Added by doberman generator\n" + template);
+    }else{
+      this.template('gitignore', '.gitignore');
+    }
   },
 
   jshint: function() {
@@ -49,8 +60,10 @@ module.exports = generators.Base.extend({
   },
 
   app: function() {
-    this.directory('app');
-    this.mkdir('app/styles');
+    if(!this.useMiddleman){
+      this.directory('app');
+      this.mkdir('app/styles');
+    }
   },
 
   install: function() {
@@ -59,7 +72,18 @@ module.exports = generators.Base.extend({
 
   end: function() {
     if (this.includeScssFramework) {
-      this.directory(this.destinationRoot() + '/bower_components/dbrmn-scss-framework', 'app/styles');
+      if(this.useMiddleman){
+        this.directory(this.destinationRoot() + '/bower_components/dbrmn-scss-framework', 'source/stylesheets');
+        this.fs.delete('source/stylesheets/all.css');
+        this.fs.delete('source/stylesheets/normalize.css');
+
+        var src = this.readFileAsString('source/layouts/layout.erb');
+        src = src.replace('<%= stylesheet_link_tag "normalize", "all" %>', '<%= stylesheet_link_tag "style" %>');
+        this.write('source/layouts/layout.erb', src);
+
+      } else {
+        this.directory(this.destinationRoot() + '/bower_components/dbrmn-scss-framework', 'app/styles');
+      }
     }
   }
 });
