@@ -50,7 +50,11 @@ module.exports = generators.Base.extend({
 
   app: function() {
     this.directory('app');
-    this.mkdir('app/styles');
+    this.mkdir('app/stylesheets');
+  },
+
+  html: function() {
+    this.template('index.html', 'app/index.html');
   },
 
   install: function() {
@@ -59,7 +63,7 @@ module.exports = generators.Base.extend({
 
   end: function() {
     if (this.includeScssFramework) {
-      this.directory(this.destinationRoot() + '/bower_components/dbrmn-scss-framework', 'app/styles');
+      this.directory(this.destinationRoot() + '/bower_components/dbrmn-scss-framework', 'app/stylesheets');
     }
   }
 });
