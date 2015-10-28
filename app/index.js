@@ -8,29 +8,6 @@ module.exports = generators.Base.extend({
   },
 
   prompting: {
-    askForTaskrunner: function() {
-      var done = this.async();
-
-      this.prompt({
-        type: 'list',
-        name: 'taskrunner',
-        message: 'Which task runner would you like to use?',
-        choices: [{
-          name: 'Gulp',
-          value: 'gulp'
-        },{
-          name: 'Grunt',
-          value: 'grunt'
-        }],
-        default: 0
-      }, function(answers) {
-        console.log(answers);
-        // this.taskRunner = answers.taskrunner
-        this.taskRunner = answers.taskrunner;
-        done();
-      }.bind(this));
-    },
-
     askForScssFramework: function() {
       var done = this.async();
 
@@ -57,14 +34,7 @@ module.exports = generators.Base.extend({
   },
 
   taskRunner: function() {
-    switch (this.taskRunner) {
-      case 'gulp':
-        this.template('Gulpfile.js');
-        break;
-      case 'grunt':
-        this.template('Gruntfile.js');
-        break;
-    }
+    this.template('Gulpfile.js');
   },
 
   packageJSON: function() {

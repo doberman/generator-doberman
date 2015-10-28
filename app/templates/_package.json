@@ -1,15 +1,9 @@
 {
   "name": "<%= _.slugify(appname) %>",
   "devDependencies": {
-    <% if(taskRunner === 'grunt') { %>
-    "grunt": "^0.4.5",
-    "grunt-contrib-sass": "^0.7.3",
-    "grunt-contrib-watch": "^0.6.1"
-    <% } else if(taskRunner === 'gulp') { %>
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.0.0",
     "gulp-sass": "^2.0.4",
     "gulp-autoprefixer": "^3.0.2"
-    <% } %>
   }
 }
