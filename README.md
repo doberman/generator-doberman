@@ -1,6 +1,6 @@
 # generator-doberman
 
-Scaffold a Doberman webapp base using [Yeoman](http://yeoman.io/). Currently support for Grunt and [doberman-scss-framework](https://github.com/doberman/dbrmn-scss-framework).
+Scaffold a Doberman webapp base using [Yeoman](http://yeoman.io/). Currently support for Gulp and [doberman-scss-framework](https://github.com/doberman/dbrmn-scss-framework).
 
 ## Getting started
 
