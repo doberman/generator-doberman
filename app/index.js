@@ -7,22 +7,24 @@ module.exports = generators.Base.extend({
     generators.Base.apply(this, arguments);
   },
 
-  prompting: function() {
-    var done = this.async();
+  prompting: {
+    askForScssFramework: function() {
+      var done = this.async();
 
-    this.prompt({
-      type: 'checkbox',
-      name: 'features',
-      message: 'What do you want to use?',
-      choices: [{
-        name: 'Doberman SCSS base structure',
-        value: 'includeScssFramework',
-        checked: true
-      }]
-    }, function(answers) {
-      this.includeScssFramework = answers.features.indexOf('includeScssFramework') !== -1;
-      done();
-    }.bind(this));
+      this.prompt({
+        type: 'checkbox',
+        name: 'features',
+        message: 'What do you want to use?',
+        choices: [{
+          name: 'Doberman SCSS base structure',
+          value: 'includeScssFramework',
+          checked: true
+        }]
+      }, function(answers) {
+        this.includeScssFramework = answers.features.indexOf('includeScssFramework') !== -1;
+        done();
+      }.bind(this));
+    }
   },
 
   cloneScss: function() {
@@ -31,8 +33,8 @@ module.exports = generators.Base.extend({
     }
   },
 
-  gruntfile: function() {
-    this.template('Gruntfile.js');
+  taskRunner: function() {
+    this.template('Gulpfile.js');
   },
 
   packageJSON: function() {
