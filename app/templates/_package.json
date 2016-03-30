@@ -4,6 +4,7 @@
     "gulp": "^3.9.0",
     "gulp-load-plugins": "^1.0.0",
     "gulp-sass": "^2.0.4",
+    "gulp-connect": "^3.2.2",
     "gulp-autoprefixer": "^3.0.2"
   }
 }
